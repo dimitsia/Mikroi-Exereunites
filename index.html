@@ -1,0 +1,393 @@
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Μικροί Εξερευνητές • 230 εκπαιδευτικές αποστολές</title><style>
+:root{font-family:system-ui,Arial,sans-serif;color:#edf7ff;background:#0b1730}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 30% 0,#234f78,#0b1730 65%);min-height:100vh}main{max-width:1180px;margin:auto;padding:18px}h1{margin:5px 0;font-size:clamp(26px,4vw,42px)}h2{margin:8px 0 14px}button,input{font:inherit}button{border:0;border-radius:13px;padding:11px 15px;background:#ffcf58;color:#192c43;font-weight:800;cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}.alt{background:#d9efff}.panel{background:#ffffff12;border:1px solid #ffffff30;border-radius:22px;padding:18px;margin:14px 0}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.hidden{display:none!important}.muted{opacity:.85;font-size:14px}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:14px}.game{display:block;width:100%;min-height:175px;background:linear-gradient(140deg,#2e6d9a,#193b68);color:white;text-align:left;border:1px solid #9bcfff;padding:18px}.game .emoji{font-size:43px;display:block}.game strong{font-size:19px;display:block;margin:7px 0}.game small{font-weight:400;line-height:1.5;display:block}.levels{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}.level{background:#2a5e87;color:white;min-height:75px}.stage{height:440px;position:relative;border-radius:22px;overflow:hidden;border:5px solid #d7efff;touch-action:manipulation;user-select:none;color:#13263e;background:linear-gradient(#8fd9ff 0 72%,#67b86a 72%)}.stage[data-theme=space],.stage[data-theme=memory]{background:radial-gradient(circle at 45% 15%,#5867a8,#131e48 70%);color:white}.stage[data-theme=sea],.stage[data-theme=island]{background:linear-gradient(#90d9ff 0 25%,#1f9dc3 25% 80%,#12718e 80%)}.stage[data-theme=castle],.stage[data-theme=lava]{background:linear-gradient(#b8a8d9,#6c5c8c 70%,#554b5d 70%)}.stage[data-theme=art],.stage[data-theme=puzzle]{background:linear-gradient(#f7e9cc,#c8e5f6)}.stage[data-theme=fair]{background:linear-gradient(#b7e5ff 0 72%,#d8b47b 72%)}.stage[data-theme=garden],.stage[data-theme=field]{background:linear-gradient(#b9ecff 0 65%,#74c987 65%)}.stage[data-theme=math]{background:linear-gradient(145deg,#d7f3ff,#90c8e6)}.stage[data-theme=detective]{background:linear-gradient(145deg,#ffeab0,#c4d3a0)}.stage[data-theme=keyboard]{background:linear-gradient(#d6e7ff,#adc9f5)}.item{position:absolute;width:66px;height:66px;font-size:36px;display:grid;place-items:center;border:3px solid #ffffffbb;background:#ffffffda;border-radius:20px;box-shadow:0 8px 0 #19375b40;transition:transform .25s,opacity .3s;cursor:pointer;touch-action:none}.item:hover{transform:scale(1.1)}.item.done{opacity:0;pointer-events:none;transform:scale(.3)}.item.float{animation:float 2s ease-in-out infinite alternate}.decor{position:absolute;font-size:30px;opacity:.42;pointer-events:none}.hero{position:absolute;left:6%;top:65%;font-size:60px;transition:left .5s,top .5s;filter:drop-shadow(0 5px 4px #0004);pointer-events:none}.instruction{font-size:18px;font-weight:750}.bar{height:12px;border-radius:99px;background:#ffffff2a;overflow:hidden;margin:12px 0}.bar>div{height:100%;background:#ffcf58;transition:width .3s}.entry{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}.entry input,.field{padding:12px;border-radius:12px;border:2px solid #90bbd7;background:white;color:#18273d;min-width:220px}.overlay{position:fixed;inset:0;background:#06152bdc;display:grid;place-items:center;padding:16px;z-index:20}.modal{max-width:470px;width:100%;text-align:center;background:linear-gradient(155deg,#264b91,#152a59);border:3px solid #ffe5a2;border-radius:30px;padding:27px;box-shadow:0 24px 70px #0009;animation:pop .35s ease}.bigstars{font-size:52px;letter-spacing:8px;animation:float .9s infinite alternate}.confetti{font-size:42px}.tag{background:#ffffff1e;border-radius:15px;padding:8px 12px}.teacher{color:#ffdf82}@keyframes float{to{transform:translateY(-11px)}}@keyframes pop{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}@media(max-width:600px){.stage{height:360px}.item{width:54px;height:54px;font-size:30px}.panel{padding:12px}}
+@keyframes flyballoon{0%{transform:translate(0,20px)}50%{transform:translate(12px,-65px)}100%{transform:translate(-10px,15px)}}.balloon{animation:flyballoon 3s ease-in-out infinite alternate}.stage .item{touch-action:none}.puzzle-wrap{position:absolute;inset:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;z-index:2}.puzzle-hint{background:#fff;color:#172e48;border-radius:12px;padding:7px 12px;text-align:center;font-weight:750;font-size:clamp(12px,2vw,16px)}.puzzle-board{display:grid;gap:5px;width:min(100%,380px);height:min(330px,calc(100% - 58px));aspect-ratio:1}.puzzle-tile{min-width:0;min-height:0;padding:2px;border:3px solid #385c8e;border-radius:10px;background:linear-gradient(#fff,#dceeff);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:grab;color:#152e51;box-shadow:0 3px 0 #24456d}.puzzle-tile.correct{border-color:#30a46c;background:#e2ffed}.puzzle-tile.selected{outline:4px solid #ffac19;transform:scale(.95)}.puzzle-symbol{font-size:clamp(20px,3.5vw,35px)}.puzzle-number{font-size:clamp(12px,2vw,19px);font-weight:900}@media(max-width:600px){.puzzle-board{height:min(265px,calc(100% - 55px))}}.puzzle-layout{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;min-height:0;flex:1}.puzzle-preview{width:120px;aspect-ratio:1;background-size:cover;border:5px solid white;border-radius:12px;box-shadow:0 5px 12px #0003;flex-shrink:0}.puzzle-board{width:min(65vw,335px);height:auto;aspect-ratio:1;flex-shrink:0}.puzzle-tile{background-repeat:no-repeat;border-radius:4px;padding:0;border:2px solid #d9eaff;box-shadow:0 2px 4px #0003}.puzzle-tile.correct{border-color:#42d48a;background-color:transparent}.puzzle-wrap{justify-content:center}.puzzle-tile.selected{outline:4px solid #ffb700}@media(max-width:650px){.puzzle-layout{flex-direction:column;gap:8px}.puzzle-preview{width:75px}.puzzle-board{width:min(75vw,240px)}}.rabbit-board{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:min(72%,390px);aspect-ratio:1;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);border:5px solid #547c4a;border-radius:14px;overflow:hidden;background:#d9f3b7;box-shadow:0 8px 20px #0003}.rabbit-cell{display:flex;align-items:center;justify-content:center;border:1px solid #a9ce8b;font-size:clamp(15px,3vw,29px);background:#e8f8cf}.rabbit-cell:nth-child(odd){background:#d5edb2}.rabbit-hero{position:absolute!important;transform:translate(-50%,-50%);z-index:4;pointer-events:none;transition:left .12s linear,top .12s linear;filter:drop-shadow(0 2px 2px #354d32);font-size:clamp(24px,4vw,42px)!important}.rabbit-controls{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,48px);gap:4px;z-index:8}.rabbit-controls button{width:48px;height:39px;padding:0;font-size:20px}.rabbit-controls span{display:block}@media(max-width:600px){.rabbit-board{width:min(85%,310px);top:39%}.rabbit-controls{bottom:1%}}@keyframes balloon-cross{0%{left:8%;transform:translateY(-5px)}50%{left:88%;transform:translateY(5px)}100%{left:8%;transform:translateY(-5px)}}
+.balloon-cross{animation-name:balloon-cross!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-direction:normal!important;will-change:left;}
+.balloon-cross:focus-visible{outline:4px solid #ffda36}
+.castle-board{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:min(90%,330px);height:330px;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);gap:3px;padding:5px;border:4px solid #f4d28d;border-radius:12px;background:#48375e;box-shadow:0 5px 15px #0006}.castle-cell{min-width:0;min-height:0;display:grid;place-items:center;background:#d5e7c5;border:1px solid #79996e;border-radius:5px;font-size:clamp(17px,3vw,30px);color:#14233b}.castle-cell:nth-child(even){background:#c4dcaf}.castle-cell.wall{background:#683d42}.castle-cell.current{background:#ffe3a2;outline:3px solid #fff4a0;outline-offset:-3px}.castle-status{position:absolute;bottom:53px;left:8px;right:8px;text-align:center;background:#172a50;color:white;padding:6px;border-radius:10px;font-weight:700;font-size:14px}.castle-controls{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,40px);grid-template-rows:repeat(2,21px);gap:2px}.castle-controls button{padding:0;border-radius:5px;font-size:15px}@media(max-width:600px){.castle-board{width:min(82%,240px);height:240px}.castle-status{bottom:48px;font-size:12px;padding:4px}.castle-cell{font-size:19px}}</style></head><body><main><h1>🌟 Μικροί Εξερευνητές</h1><p class="muted">15 διαφορετικά παιχνίδια · 230 πίστες · συλλογή αστεριών</p><section id="login" class="panel"><h2>Ποιος παίζει;</h2><div class="row"><input id="name" class="field" maxlength="30" placeholder="Όνομα μαθητή"><button id="enter">Είσοδος / Νέος μαθητής</button><button id="teacher" class="alt">🔐 Εκπαιδευτικός</button></div><div id="profiles" class="row" style="margin-top:12px"></div><p class="muted">Η πρόοδος αποθηκεύεται σε αυτόν τον browser. Για μεταφορά σε άλλο υπολογιστή χρησιμοποίησε αντίγραφο ασφαλείας.</p></section><section id="app" class="hidden"><div class="panel"><div class="row"><strong id="who"></strong><span id="totals" class="tag"></span><button id="switch" class="alt">Αλλαγή χρήστη</button><button id="export" class="alt">Εξαγωγή</button><button id="import" class="alt">Εισαγωγή</button><input id="file" type="file" accept=".json" hidden></div><div class="bar"><div id="meter"></div></div><p id="teacherInfo" class="teacher hidden">🔓 Προεπισκόπηση εκπαιδευτικού: όλες οι πίστες ανοικτές, χωρίς καταχώριση προόδου.</p></div><section id="games" class="panel"><h2>Διάλεξε παιχνίδι</h2><div id="gamecards" class="cards"></div></section><section id="levels" class="panel hidden"><div class="row"><button class="alt" id="backGames">← Παιχνίδια</button><h2 id="gameTitle"></h2></div><p id="gameDesc"></p><div id="levelcards" class="levels"></div></section><section id="play" class="panel hidden"><div class="row"><button id="backLevels" class="alt">← Πίστες</button><strong id="mission"></strong><span id="progress" class="tag"></span></div><p id="instruction" class="instruction"></p><div id="stage" class="stage"></div><div id="entry" class="entry hidden"><input id="answer" class="field" autocomplete="off" spellcheck="false" placeholder="Γράψε εδώ"><button id="check">Έλεγχος ✓</button></div><p id="feedback" aria-live="polite"></p></section></section></main><div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div class="modal"><div class="confetti">🎉 🏆 🎉</div><h2 id="winTitle">Μπράβο!</h2><div class="bigstars" id="stars">⭐⭐⭐</div><p id="winText"></p><p id="winDetails"></p><div class="row" style="justify-content:center"><button id="next">Επόμενη πίστα →</button><button class="alt" id="winLevels">Επιλογή πίστας</button></div></div></div><script>
+(()=>{'use strict';
+const GAMES=[["🐉", "Το δρακάκι στον ουρανό", "sky", "Πέταξε, ακολούθησε διαδρομές και πιάσε αστέρια."], ["🐰", "Ο λαγός και το καρότο", "field", "Οδήγησε τον λαγό σε καρότα με σωστή σειρά."], ["🎈", "Μπαλόνια στο πανηγύρι", "fair", "Σκάσε τα μπαλόνια που ζητά η αποστολή."], ["🐞", "Ο κήπος με τις πασχαλίτσες", "garden", "Βάλε τις πασχαλίτσες στα σωστά λουλούδια."], ["🏴‍☠️", "Το νησί του θησαυρού", "island", "Άνοιξε σεντούκια και ανακάλυψε κρυμμένους θησαυρούς."], ["🐠", "Καθαρίζω τη θάλασσα", "sea", "Μάζεψε σκουπίδια και προστάτεψε τα ψάρια."], ["🛡️", "Ο μικρός ιππότης", "castle", "Άνοιξε πόρτες με διπλό κλικ."], ["🚀", "Ο διαστημικός οδηγός", "space", "Χρησιμοποίησε τη ροδέλα για να κινηθείς."], ["🎨", "Βλέπω και χρωματίζω", "art", "Ζωγράφισε σχέδια κελί προς κελί."], ["🐲", "Το κάστρο του δράκου", "lava", "Βρες το σωστό μονοπάτι ανάμεσα στα εμπόδια."], ["🧠", "Επανάλαβε το μοτίβο", "memory", "Θυμήσου και επανάλαβε τη φωτεινή ακολουθία."], ["🧩", "Παζλ με επίπεδα", "puzzle", "Βάλε τα κομμάτια στη σωστή θέση."], ["⌨️", "Ποντίκι και πληκτρολόγιο", "keyboard", "Πληκτρολόγησε λέξεις και μικρές προτάσεις."], ["🔢", "Μαθηματική Περιπέτεια", "math", "Λύσε αριθμητικούς γρίφους και μικρά προβλήματα."], ["🔎", "Μικρός Ντετέκτιβ", "detective", "Παρατήρησε, ταξινόμησε και ανακάλυψε τον κανόνα."]],COUNTS=[16, 16, 16, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],TOTAL=230,STORE='mouse_keyboard_adventure_v1',PIN='mouse_keyboard_teacher_pin_v1';
+const $=id=>document.getElementById(id);let db={},user='',teacher=false,game=0,current=1,errors=0,earned=0,goal=1,started=0,alive=false,token=0,timers=[],wheel=0;
+try{let d=JSON.parse(localStorage.getItem(STORE)||'{}');if(d&&typeof d==='object')db=d}catch{}
+const startId=g=>COUNTS.slice(0,g).reduce((a,b)=>a+b,1);const gid=id=>{let s=0;for(let i=0;i<COUNTS.length;i++){s+=COUNTS[i];if(id<=s)return i}return COUNTS.length-1};const step=id=>id-startId(gid(id));const profile=()=>db[user]||{stars:{}};
+function save(){try{localStorage.setItem(STORE,JSON.stringify(db))}catch{alert('Δεν ήταν δυνατή η αποθήκευση.')}}
+function reset(){if(window.__pirateKeys){window.__pirateKeys.forEach(fn=>document.removeEventListener('keydown',fn));window.__pirateKeys=[]}token++;timers.forEach(clearTimeout);timers=[];let s=$('stage');s.onwheel=null;s.onpointermove=null;delete s.dataset.hit;$('answer').onkeydown=null;$('check').onclick=null;document.onkeydown=null;window.onkeydown=null;alive=false}
+function later(fn,ms){let t=token;timers.push(setTimeout(()=>{if(t===token)fn()},ms))}
+function show(id){for(let x of ['games','levels','play'])$(x).classList.toggle('hidden',x!==id);$('overlay').classList.add('hidden')}
+function renderProfiles(){let root=$('profiles');root.replaceChildren();Object.keys(db).filter(k=>db[k]?.stars).sort().forEach(n=>{let b=document.createElement('button');b.className='alt';b.textContent=n+' · '+Object.keys(db[n].stars).length+'/'+TOTAL;b.onclick=()=>login(n);root.append(b)})}
+function login(n,t=false){reset();user=n;teacher=t;if(!t){db[n]??={stars:{}};db[n].stars??={};save()}$('login').classList.add('hidden');$('app').classList.remove('hidden');$('teacherInfo').classList.toggle('hidden',!t);$('who').textContent=t?'🔐 Εκπαιδευτικός':'👤 '+n;renderGames()}
+function unlocked(id){return teacher||id===1||!!profile().stars?.[id-1]}
+function renderGames(){reset();show('games');let stars=Object.values(profile().stars||{}).reduce((a,b)=>a+Number(b||0),0),done=Object.keys(profile().stars||{}).length;$('totals').textContent=teacher?TOTAL+' διαθέσιμες πίστες':done+'/'+TOTAL+' πίστες · ⭐ '+stars;$('meter').style.width=(teacher?100:done/TOTAL*100)+'%';let root=$('gamecards');root.replaceChildren();GAMES.forEach((g,i)=>{let s=startId(i),n=COUNTS[i],completed=Array.from({length:n},(_,j)=>profile().stars?.[s+j]).filter(Boolean).length,b=document.createElement('button');b.className='game';b.innerHTML='<span class="emoji">'+g[0]+'</span><strong>'+g[1]+'</strong><small>'+g[3]+'</small><p>'+completed+'/'+n+' πίστες · '+(teacher||unlocked(s)?'Παίξε →':'🔒 Ξεκλειδώνει με πρόοδο')+'</p>';b.disabled=!unlocked(s);b.onclick=()=>renderLevels(i);root.append(b)})}
+function renderLevels(g){reset();game=g;show('levels');$('gameTitle').textContent=GAMES[g][0]+' '+GAMES[g][1];$('gameDesc').textContent=GAMES[g][3];let root=$('levelcards');root.replaceChildren();for(let j=0;j<COUNTS[g];j++){let id=startId(g)+j,b=document.createElement('button');b.className='level';b.disabled=!unlocked(id);b.textContent=(b.disabled?'🔒 ':'')+'Πίστα '+(j+1)+'\n'+'⭐'.repeat(profile().stars?.[id]||0);b.style.whiteSpace='pre-line';b.onclick=()=>play(id);root.append(b)}}
+function pos(i,n){let c=Math.min(5,n),rows=Math.ceil(n/c);return [10+(i%c)*78/Math.max(1,c-1),16+Math.floor(i/c)*59/Math.max(1,rows-1)]}
+function item(label,x,y,fn,cls=''){let b=document.createElement('button');b.type='button';b.className='item '+cls;b.textContent=label;b.style.left='calc('+x+'% - 30px)';b.style.top='calc('+y+'% - 30px)';b.setAttribute('aria-label',label);b.onclick=()=>{if(alive)fn(b)};$('stage').append(b);return b}
+function decoration(g){let s=$('stage'),d=[['☁️','☀️'],['🌼','🌿'],['🎪','🎠'],['🌷','🌻'],['🌴','🌊'],['🐟','🪸'],['🏰','🛡️'],['🪐','✨'],['🖌️','🌈'],['🔥','🪨'],['✨','💫'],['🧩','🔷'],['⌨️','🖱️'],['🔢','➕'],['🔎','💡']][g];for(let i=0;i<6;i++){let e=document.createElement('span');e.className='decor';e.textContent=d[i%2];e.style.left=(i*17+3)+'%';e.style.top=(i%3*27+4)+'%';s.append(e)}}
+function hero(emoji){let h=document.createElement('span');h.className='hero';h.id='hero';h.textContent=emoji;$('stage').append(h);return h}
+function move(h,x,y){h.style.left=x+'%';h.style.top=y+'%'}
+function instruction(t){$('instruction').textContent=t}function status(){$('progress').textContent='⭐ '+earned+'/'+goal+' · Λάθη '+errors}function mistake(){errors++;$('feedback').textContent='Προσπάθησε ξανά!';status()}
+function collect(el){if(el.classList.contains('done'))return;el.classList.add('done');earned++;status();if(earned>=goal)later(win,450)}
+function win(){if(!alive)return;alive=false;let sec=Math.round((Date.now()-started)/1000),stars=errors===0?3:errors<3?2:1;if(!teacher){profile().stars[current]=Math.max(profile().stars[current]||0,stars);save()}reset();$('stars').textContent='⭐'.repeat(stars)+'☆'.repeat(3-stars);$('winTitle').textContent=stars===3?'ΑΠΙΘΑΝΑ!':stars===2?'ΠΟΛΥ ΚΑΛΑ!':'ΜΠΡΑΒΟ!';$('winText').textContent='Ολοκλήρωσες την πίστα '+(step(current)+1)+' στο παιχνίδι «'+GAMES[game][1]+'»!';$('winDetails').textContent='⭐ '+stars+'/3 · ⏱ '+sec+' δευτ. · '+errors+' λάθη'+(teacher?' · Προεπισκόπηση':'');$('next').disabled=current===TOTAL;$('overlay').classList.remove('hidden')}
+function play(id){if(!unlocked(id))return;reset();document.onkeydown=null;current=id;game=gid(id);let k=step(id),g=GAMES[game],s=$('stage');show('play');s.replaceChildren();s.style.height='';s.style.minHeight='';s.dataset.theme=g[2];decoration(game);alive=true;earned=0;errors=0;started=Date.now();$('mission').textContent=g[0]+' '+g[1]+' · '+(k+1)+'/'+COUNTS[game];$('feedback').textContent='';$('entry').classList.add('hidden');$('answer').value='';mission(game,k);status()}
+function mission(g,k){
+const s=$('stage'),n=3+Math.floor(k/4),rand=i=>(i*37+k*19)%83, add=(tag,txt,x,y,css='')=>{let e=document.createElement(tag);e.textContent=txt;e.style.cssText=`position:absolute;left:${x}%;top:${y}%;${css}`;s.append(e);return e},button=(txt,x,y,fn)=>{let e=item(txt,x,y,fn);return e},finish=()=>{earned=goal;status();win()},setGoal=v=>{goal=v;status()},note=t=>$('feedback').textContent=t;
+if(g===0){
+
+ const mode=k%4,count=3+Math.floor(k/4);setGoal(count);
+ const h=hero('🐉'),checkpoints=[];let flying=false;
+ instruction(['Πέρασε με τον δείκτη μέσα από τα αστέρια με τη σειρά.','Πάτησε «Απογείωση» και οδήγησε το δρακάκι στα φωτεινά αστέρια.','Ακολούθησε τα αστέρια από δεξιά προς τα αριστερά.','Πέρασε από τα αστέρια αποφεύγοντας τις καταιγίδες.'][mode]);
+ const order=Array.from({length:count},(_,i)=>mode===2?count-1-i:i);
+ for(let i=0;i<count;i++){let x=12+i*76/Math.max(1,count-1),y=24+((i*29+k*13)%48);let b=button('⭐',x,y,()=>{});b.onclick=null;b.style.borderRadius='50%';b.style.background='#fff4b7';checkpoints.push(b)}
+ let storms=[];if(mode===3){for(let i=0;i<Math.min(4,2+Math.floor(k/8));i++){let z=add('span','⛈️',25+i*21,25+((i*31+k)%43),'font-size:36px;pointer-events:none');z.style.animation='float '+(1.1+i*.3)+'s infinite alternate';storms.push(z)}}
+ if(mode===1){let b=button('🚀',45,80,()=>{flying=true;b.classList.add('done');note('Τώρα οδήγησε το δρακάκι!')});b.style.width='82px'}else flying=true;
+ s.onpointermove=e=>{if(!alive||!flying)return;let r=s.getBoundingClientRect(),x=100*(e.clientX-r.left)/r.width,y=100*(e.clientY-r.top)/r.height;move(h,Math.max(0,Math.min(90,x-5)),Math.max(0,Math.min(82,y-9)));
+ if(mode===3&&storms.some(z=>{let q=z.getBoundingClientRect();return e.clientX>q.left&&e.clientX<q.right&&e.clientY>q.top&&e.clientY<q.bottom})){if(!s.dataset.hit||Date.now()-Number(s.dataset.hit)>1200){s.dataset.hit=Date.now();mistake()}return}
+ let b=checkpoints[order[earned]];if(!b)return;let q=b.getBoundingClientRect();if(Math.abs(e.clientX-(q.left+q.width/2))<30&&Math.abs(e.clientY-(q.top+q.height/2))<30){collect(b)}};
+
+}
+else if(g===1){
+ // Σταθερό πλέγμα: ο λαγός, τα καρότα και τα εμπόδια χρησιμοποιούν τις ίδιες συντεταγμένες.
+ const mode=k%4, size=6, count=Math.min(6,3+Math.floor(k/4));setGoal(count);
+ const h=hero('🐰'), visited=new Set(), obstacles=new Set(), targets=new Map();
+ instruction(['Οδήγησε τον λαγό με τα βελάκια ή τα κουμπιά και μάζεψε τα καρότα.','Μάζεψε τα αριθμημένα καρότα από το 1 και μετά.','Πάρε πρώτα το κλειδί για να ανοίξεις την πόρτα και συνέχισε στα καρότα.','Απόφυγε τις πέτρες και μάζεψε όλα τα καρότα.'][mode]);
+ const board=document.createElement('div');board.className='rabbit-board';s.append(board);
+ const cells=[];for(let yy=0;yy<size;yy++)for(let xx=0;xx<size;xx++){const c=document.createElement('div');c.className='rabbit-cell';board.append(c);cells.push(c)}
+ const cell=(x,y)=>cells[y*size+x];
+ let x=0,y=0,next=0,hasKey=false;
+ // Μονοπάτι σε γειτονικά κελιά, ώστε όλες οι αποστολές να είναι προσβάσιμες.
+ const route=[];for(let yy=0;yy<size;yy++){const xs=yy%2===0?[1,2,3,4,5]:[5,4,3,2,1];for(const xx of xs)route.push([xx,yy])}
+ const offset=(k*7)%Math.max(1,route.length-count);let picks=route.slice(offset,offset+count);
+ // Different layouts across levels: vertical, serpentine, scattered and short route.
+ if(mode===0){picks=Array.from({length:count},(_,i)=>[(k*2+i*2)%5+1,(k+i*3)%6]);}
+ if(mode===3){picks=route.filter(([xx,yy])=>(xx+2*yy+k)%3===0).slice(0,count);if(picks.length<count)picks=route.slice(offset,offset+count);}
+ // Keep every target distinct and reachable; the obstacles are never placed on the safe spine.
+ picks=[...new Map(picks.map(q=>[q.join(','),q])).values()];for(const q of route){if(picks.length>=count)break;if(!picks.some(v=>v[0]===q[0]&&v[1]===q[1]))picks.push(q)}
+ picks.forEach(([cx,cy],i)=>{const key=cx+','+cy;targets.set(key,i);cell(cx,cy).textContent=mode===1?String(i+1)+'🥕':mode===2&&i===0?'🗝️':'🥕'});
+ if(mode===2){const [cx,cy]=picks[count-1];cell(cx,cy).textContent='🚪🥕'}
+ if(mode===3){for(let yy=0;yy<size;yy++)for(let xx=1;xx<size;xx++){const key=xx+','+yy;if(!targets.has(key)&&((xx*7+yy*3+k)%5===0)){obstacles.add(key);cell(xx,yy).textContent='🪨'}}}
+ h.classList.add('rabbit-hero');board.append(h);
+ function place(){h.style.left=`${(x+.5)*100/size}%`;h.style.top=`${(y+.5)*100/size}%`;}
+ place();
+ function walk(dx,dy){if(!alive)return;const nx=x+dx,ny=y+dy;if(nx<0||ny<0||nx>=size||ny>=size)return;const key=nx+','+ny;if(obstacles.has(key)){mistake();note('Πρόσεξε την πέτρα!');return}x=nx;y=ny;place();if(!targets.has(key)||visited.has(key))return;
+ const idx=targets.get(key);if(mode===1&&idx!==earned){mistake();note('Βρες πρώτα το καρότο '+(next+1));return}
+ if(mode===2&&idx===count-1&&!hasKey){mistake();note('Χρειάζεσαι πρώτα το κλειδί!');return}
+ if(mode===2&&idx===0)hasKey=true;
+ visited.add(key);cell(nx,ny).textContent='⭐';next++;earned++;status();note(mode===2&&idx===0?'Πήρες το κλειδί!':'Μπράβο! Συνέχισε!');if(earned>=goal)later(win,350);
+ }
+ const controls=document.createElement('div');controls.className='rabbit-controls';controls.innerHTML='<span></span><button type="button" data-d="up">⬆️</button><span></span><button type="button" data-d="left">⬅️</button><button type="button" data-d="down">⬇️</button><button type="button" data-d="right">➡️</button>';s.append(controls);
+ const directions={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]};controls.querySelectorAll('button').forEach(btn=>btn.onclick=()=>walk(...directions[btn.dataset.d]));
+ document.onkeydown=e=>{const m={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};if(m[e.key]&&alive){e.preventDefault();walk(...directions[m[e.key]])}};
+}
+else if(g===2){ // Balloon challenges: every target can be reached and clicked once.
+ const mode=k%4;setGoal(n);
+ if(mode===0){instruction('Σκάσε μόνο τα μπαλόνια με αστέρι!');for(let i=0;i<n+4;i++){let good=i<n,b=button(good?'⭐🎈':'🎈',8+rand(i)%80,15+rand(i+7)%58,e=>good?collect(e):mistake());b.classList.add('balloon');b.style.animationDuration=(2.2+i%4*.55)+'s'}}
+ if(mode===1){instruction('Πάτα τα αριθμημένα μπαλόνια από το 1 έως το '+n+'.');let order=Array.from({length:n},(_,i)=>i);for(let i=n-1;i>0;i--){const j=(k*17+i*11+7)%(i+1);[order[i],order[j]]=[order[j],order[i]]}order.forEach((v,i)=>{let b=button((v+1)+'🎈',12+rand(i+11)%76,16+rand(i+3)%55,e=>{if(v!==earned){mistake();note('Βρες το μπαλόνι '+(earned+1)+'!');return}collect(e)});b.classList.add('balloon')})}
+ if(mode===2){
+   instruction('Περίμενε να περάσει ένα μπαλόνι από τον φωτεινό στόχο και πάτησέ το τότε!');
+   const ring=add('div','🎯',48,42,'font-size:65px;pointer-events:none;z-index:1;filter:drop-shadow(0 0 10px #ffdf59)');
+   ring.setAttribute('aria-hidden','true');
+   for(let i=0;i<n;i++){
+     const b=button('🎈',12,45,el=>{
+       const r=el.getBoundingClientRect(),q=ring.getBoundingClientRect();
+       const cx=(r.left+r.right)/2,cy=(r.top+r.bottom)/2;
+       const tx=(q.left+q.right)/2,ty=(q.top+q.bottom)/2;
+       const tolerance=Math.max(38,Math.min(q.width,q.height)*.78);
+       if(Math.hypot(cx-tx,cy-ty)<=tolerance){el.style.animationPlayState='paused';collect(el)}
+       else{mistake();note('Περίμενε να φτάσει το μπαλόνι στο 🎯!')}
+     });
+     b.classList.add('balloon-cross');b.style.top='calc(45% - 30px)';
+     b.style.animationDuration=(3.6+i*.48)+'s';b.style.animationDelay=(-i*.71)+'s';b.style.zIndex='2';
+   }
+ }
+ if(mode===3){instruction('Βρες και σκάσε μόνο τα μπαλόνια του χρώματος που ζητείται.');let colors=['🔴','🟡','🔵','🟢'];let chosen=colors[Math.floor(k/4)%4];add('div','Ζητούμενο: '+chosen,36,3,'font-size:25px;background:white;padding:8px;border-radius:12px');for(let i=0;i<n+5;i++){let good=i<n,b=button((good?chosen:colors[(colors.indexOf(chosen)+1+i%3)%4])+'🎈',8+rand(i)%80,20+rand(i+7)%53,e=>good?collect(e):mistake());b.classList.add('balloon')}}
+}
+else if(g===3){ // Πασχαλίτσες: πραγματικά ανακατεμένη αντιστοίχιση
+ const mode=k%4, symbols=mode===0?['🔴','🟡','🔵','🟢','🟣','🟠','⚪']:mode===1?['1','2','3','4','5','6','7']:mode===2?['★','♥','◆','●','▲','■','☀']:['🍎','🍋','🍇','🍐','🍒','🥕','🍓'];
+ const count=Math.min(6,3+Math.floor(k/4));setGoal(count);
+ instruction(['Σύρε κάθε πασχαλίτσα στο λουλούδι με το ίδιο χρώμα.','Αντιστοίχισε τους αριθμούς στις σωστές θέσεις.','Βρες το ίδιο σχήμα για κάθε πασχαλίτσα.','Αντιστοίχισε τα ίδια φρούτα και λαχανικά.'][mode]);
+ const order=Array.from({length:count},(_,i)=>i).sort((a,b)=>((a*17+k*13)%count)-((b*17+k*13)%count));
+ // Ασφαλής κυκλική μετατόπιση: κανένα αντικείμενο δεν βρίσκεται πάνω από τον στόχο του.
+ const shift=1+(k%(count-1)); const placed=new Set();
+ const targets=Array.from({length:count},(_,i)=>{let x=8+i*82/Math.max(1,count-1);let t=button('🌼 '+symbols[i],x,74,()=>{});t.style.background='#fff6c7';t.style.borderColor='#e5a43c';return t});
+ for(let i=0;i<count;i++){
+   let identity=(i+shift)%count,x=8+i*82/Math.max(1,count-1),bug=button('🐞 '+symbols[identity],x,19,()=>{});
+   bug.style.background='#e0f6ff';bug.style.borderColor='#2e80aa';bug.style.touchAction='none';
+   const home=()=>{bug.style.left=`calc(${x}% - 30px)`;bug.style.top='calc(19% - 30px)'};
+   bug.onpointerdown=e=>{if(!alive||placed.has(identity))return;bug.setPointerCapture(e.pointerId)};
+   bug.onpointermove=e=>{if(!bug.hasPointerCapture(e.pointerId))return;let r=s.getBoundingClientRect();bug.style.left=(e.clientX-r.left-bug.offsetWidth/2)+'px';bug.style.top=(e.clientY-r.top-bug.offsetHeight/2)+'px'};
+   bug.onpointerup=e=>{if(!alive||placed.has(identity))return;if(bug.hasPointerCapture(e.pointerId))bug.releasePointerCapture(e.pointerId);
+      let hit=targets.findIndex(t=>{let r=t.getBoundingClientRect();return e.clientX>=r.left-12&&e.clientX<=r.right+12&&e.clientY>=r.top-12&&e.clientY<=r.bottom+12});
+      if(hit===identity){placed.add(identity);targets[identity].textContent='⭐ '+symbols[identity];collect(bug)}else{if(hit>=0)mistake();home()}
+   };
+ }
+}
+else if(g===4){ // 16 pirate missions: four genuinely different interactions
+ const mode=k%4, chapter=Math.floor(k/4), symbols=['⚓','🐚','🦜','💎','🌙','☀️','🐙','🧭'];
+ if(mode===0){ // decode a changing cipher, click glyphs in decoded order
+   const len=3+chapter,shift=(chapter+2)%symbols.length;
+   const solution=Array.from({length:len},(_,i)=>symbols[(i*3+chapter)%symbols.length]);
+   const cipher=solution.map(v=>symbols[(symbols.indexOf(v)+shift)%symbols.length]);
+   setGoal(len);instruction('Αποκρυπτογράφησε τον πειρατικό κώδικα! Κάθε σύμβολο του μηνύματος βρίσκεται '+shift+' θέσεις ΜΠΡΟΣΤΑ στον τροχό συμβόλων. Πάτησε τα σωστά σύμβολα με τη σειρά.');
+   add('div','Κώδικας: '+cipher.join('  '),12,6,'font-size:24px;background:#fff3cb;padding:10px;border-radius:12px');
+   add('div','Τροχός: '+symbols.join(' '),8,23,'font-size:22px;background:#fff;padding:8px;border-radius:12px');
+   symbols.forEach((v,i)=>button(v,10+(i%4)*25,48+Math.floor(i/4)*25,e=>{if(v!==solution[earned]){mistake();return}earned++;status();note('Σωστό σύμβολο!');if(earned>=len)win()}));
+ }
+ if(mode===1){ // treasure hunt: directional clues; no key collection
+   const side=4+chapter, total=side*side, tx=(chapter*2+1)%side,ty=(chapter+3)%side;setGoal(1);
+   instruction('Βρες τον κρυμμένο θησαυρό! Άνοιξε τετράγωνα του νησιού. Οι ενδείξεις σε οδηγούν πιο κοντά στο σημείο.');
+   let opened=new Set();
+   for(let y=0;y<side;y++)for(let x=0;x<side;x++){
+     const id=y*side+x,b=button('🌴',12+x*75/(side-1),16+y*68/(side-1),()=>{
+       if(opened.has(id)||!alive)return;opened.add(id);
+       if(x===tx&&y===ty){b.textContent='💰';collect(b);return}
+       b.textContent='🕳️';b.style.opacity='.55';
+       let dx=tx-x,dy=ty-y;
+       note('Ο χάρτης λέει: '+(Math.abs(dx)>Math.abs(dy)?(dx>0?'Πιο ανατολικά →':'Πιο δυτικά ←'):(dy>0?'Πιο νότια ↓':'Πιο βόρεια ↑')));
+     });b.style.minWidth='42px';
+   }
+ }
+ if(mode===2){ // keyboard ship navigation and waypoint checkpoints
+   const side=6, route=[[0,0],[1,0],[1,1],[3,1],[3,3],[5,3],[5,5]];
+   const stopCount=4+chapter, checkpoints=route.slice(1,stopCount+1);setGoal(stopCount);
+   instruction('Κυβέρνησε το πειρατικό πλοίο με τα βελάκια του πληκτρολογίου. Πέρασε από τις σημαδούρες με τη σωστή σειρά!');
+   const boat=hero('⛵');let x=0,y=0;
+   checkpoints.forEach(([cx,cy],i)=>{let q=add('div',String(i+1)+'⚑',8+cx*15,14+cy*13,'font-size:24px;pointer-events:none');q.dataset.checkpoint=String(i)});
+   function draw(){move(boat,8+x*15,14+y*13)}draw();
+   const keyHandler=e=>{if(!alive)return;let delta={'ArrowLeft':[-1,0],'ArrowRight':[1,0],'ArrowUp':[0,-1],'ArrowDown':[0,1]}[e.key];if(!delta)return;e.preventDefault();x=Math.max(0,Math.min(5,x+delta[0]));y=Math.max(0,Math.min(5,y+delta[1]));draw();let next=checkpoints[earned];if(next&&x===next[0]&&y===next[1]){earned++;status();note('Σημαδούρα '+earned+'!');if(earned>=stopCount)win()}};
+   document.addEventListener('keydown',keyHandler);
+   // Remove this level's handler when a new level begins (and prevent duplicate handlers).
+   if(!window.__pirateKeys)window.__pirateKeys=[];window.__pirateKeys.forEach(fn=>document.removeEventListener('keydown',fn));window.__pirateKeys=[keyHandler];
+ }
+ if(mode===3){ // spot-the-difference: select unique symbols among decoys
+   const count=3+chapter, unique=['🦀','🐠','🐬','🐢','🦈','🪼','🐡'];setGoal(count);
+   instruction('Παρατηρητικότητα: βρες τα '+count+' διαφορετικά θαλάσσια πλάσματα ανάμεσα στα πανομοιότυπα κοχύλια.');
+   let slots=Array.from({length:count+8},(_,i)=>i);for(let i=slots.length-1;i>0;i--){let j=(i*7+k*11)%(i+1);[slots[i],slots[j]]=[slots[j],slots[i]]}
+   slots.forEach((id,i)=>{let good=id<count,icon=good?unique[(id+chapter)%unique.length]:'🐚';button(icon,8+(i%5)*20,18+Math.floor(i/5)*27,e=>good?collect(e):mistake())});
+ }
+}
+else if(g===5){ // sea: five genuinely different interactions
+ const mode=k%5,chapter=Math.floor(k/5),count=3+chapter;
+ const positions=[[14,22],[34,38],[58,20],[78,47],[24,67],[55,67],[75,22],[43,52],[12,52]];
+ if(mode===0){ // drag litter, avoid marine animals
+   setGoal(count);instruction('Καθαρισμός ακτής: σύρε τα σκουπίδια στον κάδο. Πρόσεχε τα θαλάσσια ζωάκια!');
+   const bin=button('🗑️',83,73,()=>{});bin.style.width='85px';
+   for(let i=0;i<count+3;i++){
+     const good=i<count,[x,y]=positions[(i*3+chapter)%positions.length],b=button(good?['🧴','🥤','🛍️','🥫'][i%4]:['🐟','🐢','🐬'][i%3],x,y,()=>{});
+     const startX=b.style.left,startY=b.style.top;
+     b.onpointerdown=e=>{if(!alive||b.classList.contains('done'))return;b.setPointerCapture(e.pointerId)};
+     b.onpointermove=e=>{if(!b.hasPointerCapture(e.pointerId))return;const r=s.getBoundingClientRect();b.style.left=(e.clientX-r.left-b.offsetWidth/2)+'px';b.style.top=(e.clientY-r.top-b.offsetHeight/2)+'px'};
+     b.onpointerup=e=>{if(!alive)return;if(b.hasPointerCapture(e.pointerId))b.releasePointerCapture(e.pointerId);const r=bin.getBoundingClientRect();if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom){if(good)collect(b);else mistake()}if(!b.classList.contains('done')){b.style.left=startX;b.style.top=startY}};
+   }
+ }else if(mode===1){ // sorting by material, two distinct bins
+   setGoal(count);instruction('Ανακύκλωση: πάτησε κάθε αντικείμενο και μετά τον σωστό κάδο (πλαστικό ή μέταλλο).');
+   let selected=null;const bins=[button('🧴 Πλαστικό',16,78,()=>drop(0)),button('🥫 Μέταλλο',66,78,()=>drop(1))];bins.forEach(b=>b.style.width='145px');
+   function drop(kind){if(!selected){note('Διάλεξε πρώτα ένα αντικείμενο.');return}const {b,type}=selected;if(type!==kind){mistake();note('Δοκίμασε τον άλλο κάδο.')}else{collect(b);selected=null}}
+   for(let i=0;i<count;i++){const type=(i+chapter)%2,[x,y]=positions[i],b=button(type?'🥫':'🧴',x,y,()=>{if(b.classList.contains('done'))return;selected={b,type};note(type?'Διάλεξες μεταλλικό αντικείμενο.':'Διάλεξες πλαστικό αντικείμενο.');});}
+ }else if(mode===2){ // free animals from nets: double-click, not collection
+   setGoal(count);instruction('Διάσωση ζώων: βρες τα ζωάκια που μπλέχτηκαν σε δίχτυα και ελευθέρωσέ τα με ΔΙΠΛΟ ΚΛΙΚ!');
+   for(let i=0;i<count+3;i++){const trapped=i<count,[x,y]=positions[(i*2+chapter)%positions.length],b=button(trapped?'🕸️':'🐚',x,y,()=>note('Για διάσωση χρειάζεται διπλό κλικ στο δίχτυ.'));
+     b.ondblclick=e=>{e.preventDefault();if(b.classList.contains('done'))return;if(!trapped){mistake();return}b.textContent='🐢';collect(b)};
+   }
+ }else if(mode===3){ // clean oil patches with repeated strokes
+   setGoal(count);instruction('Πετρελαιοκηλίδα: καθάρισε κάθε μαύρη κηλίδα με 3 κλικ, μέχρι να εμφανιστεί καθαρό νερό.');
+   for(let i=0;i<count;i++){let strokes=0;const [x,y]=positions[(i+chapter)%positions.length],b=button('⚫',x,y,()=>{if(b.classList.contains('done'))return;strokes++;b.textContent=strokes===1?'🟤':strokes===2?'💧':'✨';if(strokes===3)collect(b)});}
+ }else{ // boat steering with keyboard; collect buoys in order
+   setGoal(count);instruction('Σκάφος καθαρισμού: οδήγησε το σκάφος με τα βελάκια στις αριθμημένες σημαδούρες με τη σωστή σειρά.');
+   const side=6,targets=[[1,0],[2,1],[3,2],[4,3],[5,4]].slice(0,count),boat=hero('🚤');let x=0,y=0;
+   targets.forEach(([tx,ty],i)=>{let q=add('div',(i+1)+'🛟',8+tx*15,14+ty*13,'font-size:25px;pointer-events:none');});
+   function draw(){move(boat,8+x*15,14+y*13)}draw();
+   const keyHandler=e=>{if(!alive)return;const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();x=Math.max(0,Math.min(5,x+delta[0]));y=Math.max(0,Math.min(5,y+delta[1]));draw();const t=targets[earned];if(t&&x===t[0]&&y===t[1]){earned++;status();note('Καθαρίστηκε το σημείο '+earned+'!');if(earned===targets.length)win()}};
+   if(window.__seaKeys)document.removeEventListener('keydown',window.__seaKeys);window.__seaKeys=keyHandler;document.addEventListener('keydown',keyHandler);
+ }
+}
+else if(g===6){ // knight: double click, key and gate, timed signal
+ const mode=k%3;setGoal(n);let h=hero('🛡️');
+ if(mode===0){instruction('Κάνε διπλό κλικ στις πόρτες με τη σωστή σειρά.');for(let i=0;i<n;i++){let x=10+i*78/(n-1),b=button((i+1)+'🚪',x,45,()=>note('Χρειάζεται διπλό κλικ!'));b.ondblclick=e=>{e.preventDefault();if(i!==earned){mistake();return}move(h,x,55);collect(b)}}}
+ if(mode===1){instruction('Μάζεψε το κλειδί με κλικ και άνοιξε την πόρτα με διπλό κλικ.');let keys=0;for(let i=0;i<n;i++){let x=10+i*78/(n-1),key=button('🗝️',x,22,e=>{if(e.classList.contains('done'))return;keys++;e.classList.add('done')}),door=button('🚪',x,59,()=>note('Διπλό κλικ στην πόρτα!'));door.ondblclick=e=>{e.preventDefault();if(keys<1){mistake();return}keys--;collect(door)}}}
+ if(mode===2){instruction('Άνοιξε με διπλό κλικ μόνο τις πόρτες που έχουν ⭐. Απόφυγε τις παγίδες!');for(let i=0;i<n+4;i++){let good=i<n,b=button(good?'⭐🚪':'🔥🚪',9+rand(i)%78,17+rand(i+4)%57,()=>note('Χρειάζεται διπλό κλικ!'));b.ondblclick=e=>{e.preventDefault();good?collect(b):mistake()}}}
+}
+else if(g===7){ // Διαστημικές αποστολές: ροδέλα, ζουμ, προσανατολισμός
+ const mode=k%3,h=hero('🚀');setGoal(4+Math.floor(k/4));
+ if(mode===0){instruction('Γύρισε τη ροδέλα προς την κατεύθυνση που δείχνει κάθε πλανήτης.');let dirs=Array.from({length:goal},(_,i)=>(i+k)%3===0?-1:1),txt=add('div','',20,15,'font-size:25px;background:#16234b;color:white;padding:12px;border-radius:14px');function update(){txt.textContent='🪐 '+(earned+1)+'/'+goal+' · '+(dirs[earned]>0?'Ροδέλα ΚΑΤΩ ↓':'Ροδέλα ΠΑΝΩ ↑')}update();s.onwheel=e=>{e.preventDefault();if(!alive)return;if(Math.sign(e.deltaY)===dirs[earned]){earned++;move(h,10+earned*70/goal,42);status();earned>=goal?win():update()}else mistake()}}
+ if(mode===1){instruction('Με τη ροδέλα μεγάλωσε ή μίκρυνε τον πλανήτη ώσπου να χωρέσει μέσα στο δαχτυλίδι.');let ring=add('div','◎',37,18,'font-size:170px;color:#fef3c7;pointer-events:none'),planet=add('div','🌍',45,37,'font-size:65px;pointer-events:none'),scale=.55,target=1.05;function draw(){planet.style.transform='scale('+scale+')'}draw();s.onwheel=e=>{e.preventDefault();scale=Math.max(.3,Math.min(1.8,scale+(e.deltaY<0?.08:-.08)));draw();if(Math.abs(scale-target)<.08){earned++;status();target=earned%2? .55:1.05;scale=earned%2?1.1:.55;if(earned>=goal)win();else draw()}}}
+ if(mode===2){instruction('Κάνε εναλλάξ κύλιση πάνω και κάτω για να περάσει ο πύραυλος από τους διαστημικούς σταθμούς.');let stations=Array.from({length:goal},(_,i)=>add('span','🪐',12+i*72/goal,25+(i%2)*30,'font-size:36px;pointer-events:none'));s.onwheel=e=>{e.preventDefault();let want=earned%2?-1:1;if(Math.sign(e.deltaY)!==want){mistake();return}stations[earned].textContent='⭐';earned++;move(h,10+earned*75/goal,30+(earned%2)*25);status();if(earned>=goal)win()}}
+}
+else if(g===8){
+ const colors=['#ffffff','#ef4444','#2563eb','#facc15','#16a34a','#a855f7','#f97316','#92400e','#111827'];
+ const names=['κενό','κόκκινο','μπλε','κίτρινο','πράσινο','μωβ','πορτοκαλί','καφέ','μαύρο'];
+ const beginner=[
+ ['0003000','0033300','0336330','0033300','0004000','0044400','0040400'],
+ ['0000000','0002000','0022200','0222220','0007000','0007000','0007000'],
+ ['0000000','0003000','0033300','0333330','7777777','7020207','7777777'],
+ ['0000000','0000000','0011100','0111110','0111110','0007000','0007000'],
+ ['0000000','0110110','1111111','1111111','0111110','0011100','0001000']
+ ];
+ const advanced=[["0000000000", "0555005550", "5555885555", "5555885555", "5555885555", "0666886660", "6666886666", "6666886666", "6666886666", "0666006660"], ["0000020000", "0000222000", "0000222000", "0002232200", "0002333200", "0002232200", "0002222200", "0001222100", "0011666110", "0100666001"], ["0000000000", "0000000006", "0002220066", "0022222066", "0282222666", "0222226666", "0222222666", "0022333066", "0002220066", "0000000006"], ["0007377000", "0007777000", "0022222200", "0022222200", "7723323277", "7722222277", "7728888277", "0022222200", "0008808800", "0008808800"], ["0000000000", "0770770770", "0770770770", "0777777770", "0777777770", "0733773370", "0733883370", "0777887770", "0777887770", "0777887770"], ["000000000000", "000000000000", "000000000000", "000044440000", "000443344440", "444433334484", "444433334444", "444443344440", "007744477000", "007744477000", "007700077000", "000000000000"], ["000000000000", "000000000000", "000222220000", "000233227700", "000233227700", "011222227710", "011111111110", "011111111110", "011811111810", "018881118880", "008880008880", "000800000800"], ["007000000700", "007777777700", "007777777700", "007777777700", "007737773700", "007383738300", "007737773700", "000776667000", "000777677000", "000077670000", "000000000000", "000000000000"], ["000000000000", "000444000000", "400448400000", "440444440000", "440444444000", "444444444000", "044444444400", "044444444400", "044444444440", "047744447740", "007700007700", "007700007700"], ["000055550000", "000566665000", "005666666500", "005666666500", "005666666500", "005566665500", "000555555000", "000087780000", "000087780000", "000087780000", "000077770000", "000077770000"]];
+ const labels=['Λουλούδι','Ιστιοφόρο','Σπίτι','Ομπρέλα','Καρδιά',...["Πεταλούδα", "Πύραυλος", "Ψαράκι", "Ρομπότ", "Κάστρο", "Χελώνα", "Τρένο", "Κουκουβάγια", "Δεινόσαυρος", "Αερόστατο"]];
+ const pattern=k<5?beginner[k]:advanced[k-5], size=pattern.length;
+ const painted=Array(size*size).fill(0),required=pattern.join('').split('').filter(v=>v!=='0').length;
+ let selected=1;setGoal(required);
+ instruction('Αντίγραψε το «'+labels[k]+'» ('+size+'×'+size+'). Διάλεξε χρώμα και χρωμάτισε τα αντίστοιχα τετραγωνάκια. Τα λευκά μένουν κενά.');
+ s.style.height='min(660px,calc(100vh - 205px))';s.style.minHeight='480px';
+ const panel=document.createElement('div');panel.style.cssText='position:absolute;inset:8px 8px 74px;display:flex;align-items:center;justify-content:space-evenly;gap:12px;z-index:3';s.append(panel);
+ function board(title){const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex:1;min-width:0;max-width:340px;flex-direction:column;align-items:center;gap:7px';const lab=document.createElement('strong');lab.textContent=title;lab.style.cssText='color:white;text-shadow:0 2px 4px #14223c;background:#14223cbb;border-radius:8px;padding:5px 8px';wrap.append(lab);const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat('+size+',minmax(0,1fr));width:100%;max-width:min(36vw,310px);aspect-ratio:1;border:3px solid white;border-radius:8px;overflow:hidden;background:white;box-shadow:0 5px 16px #0005';wrap.append(grid);panel.append(wrap);return grid}
+ const guide=board('👀 ΟΔΗΓΟΣ'),canvas=board('🖌️ ΧΡΩΜΑΤΙΣΕ');
+ for(let i=0;i<size*size;i++){
+  const target=Number(pattern[Math.floor(i/size)][i%size]);const sample=document.createElement('div');sample.style.cssText='background:'+colors[target]+';border:1px solid #b5bfcc';guide.append(sample);
+  const tile=document.createElement('button');tile.type='button';tile.style.cssText='min-width:0;min-height:0;padding:0;border:1px solid #cbd5e1;background:white;cursor:crosshair;touch-action:manipulation';tile.setAttribute('aria-label','Κελί '+(i+1));canvas.append(tile);
+  tile.onclick=()=>{if(!alive)return;if(target===0){mistake();note('Το τετράγωνο μένει λευκό.');return}if(painted[i]===target)return;if(selected!==target){mistake();note('Δες το σωστό χρώμα στον οδηγό.');return}painted[i]=target;tile.style.background=colors[target];earned++;status();if(earned===required)win()};
+ }
+ const tools=document.createElement('div');tools.style.cssText='position:absolute;left:2%;right:2%;bottom:7px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px;z-index:5;background:#14223cdd;border-radius:12px;padding:6px';s.append(tools);
+ colors.slice(1).forEach((color,j)=>{const idx=j+1,b=document.createElement('button');b.type='button';b.textContent='●';b.title=names[idx];b.setAttribute('aria-label',names[idx]);b.style.cssText='width:36px;height:36px;padding:0;border-radius:8px;background:'+color+';color:white;text-shadow:0 1px 3px black;border:3px solid '+(idx===selected?'white':'transparent')+';cursor:pointer;font-size:22px';b.onclick=()=>{selected=idx;[...tools.children].forEach(x=>x.style.borderColor='transparent');b.style.borderColor='white'};tools.append(b)});
+}
+else if(g===9){
+ // Castle: all interaction uses one explicit tile grid, not approximate CSS coordinates.
+ const size=6,mode=k%4;setGoal(1);
+ instruction(['Βρες την πύλη. Κινήσου μόνο στα ελεύθερα τετράγωνα.','Πάρε το χρυσό κλειδί και μετά άνοιξε την πύλη.','Μάζεψε όλα τα αστέρια και έπειτα πήγαινε στην πύλη.','Βρες το κλειδί, μάζεψε τα αστέρια και άνοιξε την πύλη.'][mode]);
+ let x=0,y=0,hasKey=false,requiredKey=mode===1||mode===3;
+ const goalCell='5,5',keyCell='2,2';
+ // Guaranteed open spine: top row, right column, and a route through the middle.
+ const route=new Set();for(let c=0;c<size;c++)route.add(c+',0');for(let r=0;r<size;r++)route.add('5,'+r);
+ for(let r=0;r<=2;r++)route.add('2,'+r);for(let c=2;c<size;c++)route.add(c+',2');
+ let walls=new Set();for(let r=1;r<size;r++)for(let c=0;c<size-1;c++)if(!route.has(c+','+r)&&((r*11+c*7+k*3)%5<3))walls.add(c+','+r);
+ // Ensure the middle key can always be reached.
+ walls.delete(keyCell);
+ const stars=new Set(mode===2?['1,0','3,2','5,4']:mode===3?['1,0','4,2']:[]);
+ const board=document.createElement('div');board.className='castle-board';s.append(board);
+ let tiles=[];
+ for(let r=0;r<size;r++)for(let c=0;c<size;c++){
+  const tile=document.createElement('div');tile.className='castle-cell';tile.dataset.pos=c+','+r;
+  if(walls.has(c+','+r))tile.classList.add('wall');
+  board.append(tile);tiles.push(tile);
+ }
+ const byPos=(a,b)=>tiles[b*size+a];
+ const banner=document.createElement('div');banner.className='castle-status';s.append(banner);
+ function render(){
+  for(let r=0;r<size;r++)for(let c=0;c<size;c++){
+   const t=byPos(c,r),pos=c+','+r;t.textContent='';t.classList.toggle('current',x===c&&y===r);
+   if(walls.has(pos))t.textContent='🔥';
+   else if(x===c&&y===r)t.textContent='🐲';
+   else if(pos===goalCell)t.textContent='🚪';
+   else if(requiredKey&&pos===keyCell&&!hasKey)t.textContent='🗝️';
+   else if(stars.has(pos))t.textContent='⭐';
+  }
+  banner.textContent=(requiredKey?(hasKey?'🗝️ Κλειδί: αποκτήθηκε':'🗝️ Κλειδί: αναζήτησέ το'):'🚪 Στόχος: η πύλη')+(mode>=2?'  ·  ⭐ Απομένουν: '+stars.size:'')+'  ·  📍 '+(x+1)+','+(y+1);
+ }
+ function walk(dx,dy){
+  if(!alive)return;const nx=x+dx,ny=y+dy;
+  if(nx<0||ny<0||nx>=size||ny>=size){note('Εδώ τελειώνει το κάστρο.');return}
+  if(walls.has(nx+','+ny)){mistake();note('🔥 Εμπόδιο! Διάλεξε άλλο τετράγωνο.');return}
+  x=nx;y=ny;const pos=x+','+y;
+  if(requiredKey&&pos===keyCell&&!hasKey){hasKey=true;note('🗝️ Πήρες το κλειδί! Τώρα βρες την πύλη.')}
+  if(stars.delete(pos)){note('⭐ Μάζεψες αστέρι!')}
+  render();
+  if(pos===goalCell){if(requiredKey&&!hasKey)note('🔒 Η πύλη είναι κλειδωμένη. Βρες πρώτα το κλειδί.');else if(stars.size)note('⭐ Χρειάζεσαι ακόμη '+stars.size+' αστέρια.');else finish()}
+ }
+ const controls=document.createElement('div');controls.className='castle-controls';s.append(controls);
+ [['⬆️',0,-1,1,0],['⬅️',-1,0,0,1],['⬇️',0,1,1,1],['➡️',1,0,2,1]].forEach(([label,dx,dy,col,row])=>{
+  const b=document.createElement('button');b.textContent=label;b.style.gridColumn=col+1;b.style.gridRow=row+1;b.setAttribute('aria-label',label);b.onclick=()=>walk(dx,dy);controls.append(b)
+ });
+ document.onkeydown=e=>{const dirs={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};if(dirs[e.key]&&alive){e.preventDefault();walk(...dirs[e.key])}};
+ render();
+}
+else if(g===10){
+ const mode=k%4,icons=['🔴','🟢','🔵','🟡','🟣','🟠'];let seed=((k+1)*2654435761)>>>0;
+ const next=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
+ const count=3+Math.floor(k/5),seq=Array.from({length:count},(_,i)=>Math.floor(next()*icons.length));
+ const order=mode===1?[...seq].reverse():mode===2?seq.filter((_,i)=>i%2===0):seq;
+ setGoal(mode===3?1:order.length);let ready=false;
+ instruction(['Θυμήσου και επανάλαβε τα φωτεινά χρώματα.','Πάτησε τα χρώματα με αντίστροφη σειρά.','Επανάλαβε μόνο τα χρώματα στις μονές θέσεις (1ο, 3ο, 5ο…).','Ποιο χρώμα εμφανίστηκε περισσότερες φορές;'][mode]);
+ if(mode===3){let counts=icons.map((_,i)=>seq.filter(v=>v===i).length),winner=counts.indexOf(Math.max(...counts));seq.splice(0,seq.length,...Array.from({length:count},(_,i)=>i<Math.ceil(count/2)?winner:(winner+1+i)%icons.length));}
+ const expected=mode===3?seq.reduce((best,v,_,arr)=>arr.filter(x=>x===v).length>arr.filter(x=>x===best).length?v:best,seq[0]):-1;
+ let tiles=[];for(let i=0;i<icons.length;i++){let b=button(icons[i],12+(i%3)*33,29+Math.floor(i/3)*35,()=>{
+ if(!ready||!alive)return;
+ if(mode===3){if(i===expected)finish();else mistake();return}
+ if(i===order[earned]){earned++;status();if(earned>=goal)win()}else{mistake();earned=0;status();note('Δοκίμασε ξανά από την αρχή.')}
+ });tiles.push(b)}
+ let msg=add('div','👀 Παρακολούθησε…',30,5,'font-size:20px;color:white;background:#162550;padding:8px;border-radius:10px');
+ seq.forEach((v,i)=>later(()=>{tiles[v].style.background='#fff28b';tiles[v].style.transform='scale(1.15)';later(()=>{tiles[v].style.background='';tiles[v].style.transform=''},370)},450+i*650));
+ later(()=>{ready=true;msg.textContent=mode===1?'↩️ Αντίστροφη σειρά!':mode===2?'1ο, 3ο, 5ο…':mode===3?'🔎 Ποιο ήταν συχνότερο;':'👉 Η σειρά σου!'},650+seq.length*650);
+}
+else if(g===11){ // Παζλ πραγματικής εικόνας, με κομμάτια της ίδιας εικονογράφησης
+ const side=k<5?3:4,total=side*side;
+ const themes=[
+  ['Το χωριό','#9cddff','#68b86e','#e8a66c','#f7db70'],['Το κάστρο','#b5b3ed','#7e9b68','#9c83b3','#ffe08a'],
+  ['Το νησί','#8de4fb','#24a4bd','#f4d49b','#ffed86'],['Το δάσος','#c2eddd','#5d9e66','#9fbc74','#fff3ad'],
+  ['Το διάστημα','#15254c','#344c86','#a5b8e5','#f4da7c'],['Η πόλη','#b9dfff','#7998b7','#ed9b76','#fff0a0'],
+  ['Το λιβάδι','#b8e9ff','#88bd66','#f3b9d0','#fff1a4'],['Το βουνό','#a6d9fa','#7895b5','#d4dbe4','#fff1a0'],
+  ['Η θάλασσα','#7cd9f4','#188ab8','#f5bd77','#ffe6a4'],['Ο κήπος','#c7f1fa','#78bc78','#e994b2','#ffec83'],
+  ['Το ηλιοβασίλεμα','#f6b5a2','#c87f91','#805f89','#ffdf81'],['Το χιονισμένο χωριό','#b8d9ef','#9fbdce','#f0f4ff','#fff2b3'],
+  ['Το λιμάνι','#9fdef5','#468db8','#ddab78','#fff0aa'],['Ο πλανήτης','#202b60','#485d98','#9cd1d7','#ffe27c'],
+  ['Η φάρμα','#c8eaff','#83bc73','#d89b6b','#fff0a3']
+ ];
+ const theme=themes[k%themes.length],seed=k+1;
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="${theme[1]}"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs><rect width="600" height="600" fill="url(#sky)"/><circle cx="${420+(seed%4)*25}" cy="${95+(seed%3)*15}" r="60" fill="${theme[4]}"/><path d="M0 375 Q130 ${210+seed%5*18} 280 365 T600 330 V600 H0" fill="${theme[2]}"/><path d="M0 485 Q150 380 310 465 T600 425 V600 H0" fill="${theme[3]}"/><path d="M0 600 Q200 500 370 580 T600 535 V600" fill="${theme[2]}" opacity=".8"/><g stroke="#314e5a" stroke-width="7" stroke-linejoin="round"><rect x="175" y="305" width="220" height="175" rx="8" fill="${theme[3]}"/><path d="M145 320 L285 190 L425 320 Z" fill="#bb594e"/><rect x="260" y="365" width="65" height="115" fill="#654f67"/><rect x="198" y="348" width="43" height="43" fill="#f9edaa"/><rect x="340" y="348" width="35" height="43" fill="#f9edaa"/></g><g fill="#36785a"><circle cx="95" cy="310" r="65"/><circle cx="515" cy="345" r="75"/><circle cx="70" cy="370" r="50"/></g><g stroke="#6b513a" stroke-width="20"><path d="M95 320 V495 M515 365 V520"/></g><g fill="#fff6cc" opacity=".85"><circle cx="${80+seed*19%450}" cy="${85+seed*13%95}" r="12"/><circle cx="${140+seed*23%350}" cy="${115+seed*7%70}" r="8"/></g></svg>`;
+ const image='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+ const values=Array.from({length:total},(_,i)=>i);
+ let rng=(seed*7919)>>>0;const random=()=>{rng=(Math.imul(rng,1664525)+1013904223)>>>0;return rng/4294967296};
+ for(let i=total-1;i>0;i--){let j=Math.floor(random()*(i+1));[values[i],values[j]]=[values[j],values[i]]}
+ if(values.every((v,i)=>v===i))[values[0],values[1]]=[values[1],values[0]];
+ setGoal(total);instruction('🧩 '+theme[0]+': φτιάξε την εικόνα! Πάτησε δύο κομμάτια για ανταλλαγή ή σύρε το ένα πάνω στο άλλο.');
+ const wrapper=document.createElement('div');wrapper.className='puzzle-wrap';
+ const heading=document.createElement('div');heading.className='puzzle-hint';heading.textContent='Κοίτα τη μικρή εικόνα και συναρμολόγησε το παζλ '+side+'×'+side;
+ const layout=document.createElement('div');layout.className='puzzle-layout';
+ const preview=document.createElement('div');preview.className='puzzle-preview';preview.style.backgroundImage=`url("${image}")`;preview.title='Ολοκληρωμένη εικόνα';
+ const board=document.createElement('div');board.className='puzzle-board';board.style.gridTemplateColumns=`repeat(${side}, minmax(0, 1fr))`;
+ layout.append(preview,board);wrapper.append(heading,layout);s.append(wrapper);let selected=-1,locked=false;
+ const draw=()=>{board.replaceChildren();earned=values.filter((v,i)=>v===i).length;status();values.forEach((v,i)=>{
+ let tile=document.createElement('button');tile.type='button';tile.className='puzzle-tile'+(v===i?' correct':'')+(selected===i?' selected':'');tile.draggable=true;tile.setAttribute('aria-label','Κομμάτι εικόνας '+(v+1));
+ tile.style.backgroundImage=`url("${image}")`;tile.style.backgroundSize=`${side*100}% ${side*100}%`;tile.style.backgroundPosition=`${(v%side)*100/(side-1)}% ${Math.floor(v/side)*100/(side-1)}%`;
+ tile.onclick=()=>{if(!alive||locked)return;if(selected<0){selected=i;draw();return}if(selected===i){selected=-1;draw();return}swap(selected,i)};
+ tile.ondragstart=e=>{if(!alive||locked){e.preventDefault();return}e.dataTransfer.setData('text/plain',String(i));e.dataTransfer.effectAllowed='move'};
+ tile.ondragover=e=>{e.preventDefault();e.dataTransfer.dropEffect='move'};
+ tile.ondrop=e=>{e.preventDefault();let from=Number(e.dataTransfer.getData('text/plain'));if(Number.isInteger(from)&&from>=0&&from<total&&from!==i)swap(from,i)};
+ board.append(tile)})};
+ const swap=(a,b)=>{[values[a],values[b]]=[values[b],values[a]];selected=-1;draw();if(values.every((v,i)=>v===i)){locked=true;earned=goal;status();later(win,550)}};
+ draw();
+}
+else if(g===12){ // πληκτρολόγιο: πέντε πραγματικά διαφορετικές δεξιότητες
+ const mode=k%5,words=['γάτα','ποντίκι','σχολείο','υπολογιστής','πληκτρολόγιο','ο λαγός τρέχει','μαζεύω αστέρια','ο δράκος πετάει','γράφω με προσοχή','μαθαίνω πληροφορική','η θάλασσα είναι γαλάζια','παίζω και μαθαίνω','ένα δύο τρία','καλημέρα φίλοι μου','η γνώση είναι δύναμη'];
+ const original=words[(k*7+Math.floor(k/5))%words.length],normal=t=>t.trim().replace(/\s+/g,' ').toLocaleLowerCase('el');let target=original,promptText='';setGoal(1);
+ if(mode===0)promptText='Αντίγραψε προσεκτικά: «'+original+'»';
+ if(mode===1){let pieces=original.split(' ');target=pieces.slice().reverse().join(' ');promptText='Γράψε τις λέξεις με ΑΝΤΙΣΤΡΟΦΗ σειρά: '+pieces.join(' | ')}
+ if(mode===2){let chars=[...original],at=chars.findIndex(c=>/[αεηιουωάέήίόύώ]/.test(c));if(at<0)at=0;target=chars[at];chars[at]='□';promptText='Πληκτρολόγησε ΜΟΝΟ το γράμμα που λείπει: «'+chars.join('')+'»';}
+ if(mode===3){let chars=[...original];target=String(chars.filter(c=>c!==' ').length);promptText='Μέτρησε τα γράμματα (όχι τα κενά) στη φράση «'+original+'» και γράψε τον αριθμό.';}
+ if(mode===4){target=original.toLocaleUpperCase('el');promptText='Γράψε με ΚΕΦΑΛΑΙΑ γράμματα: «'+original+'»';}
+ instruction(promptText);$('entry').classList.remove('hidden');$('answer').placeholder=mode===2?'Ένα γράμμα':mode===3?'Αριθμός':'Γράψε εδώ';$('answer').focus();
+ $('check').onclick=()=>{let actual=normal($('answer').value);if(actual===normal(target))finish();else{mistake();note('Έλεγξε την οδηγία και δοκίμασε ξανά.')}};
+ $('answer').onkeydown=e=>{if(e.key==='Enter')$('check').click()};button('⌨️',46,43,()=>$('answer').focus());
+}
+else if(g===13){
+ // 15 μαθηματικές αποστολές: 5 μηχανισμοί × 3 επίπεδα δυσκολίας.
+ const mode=k%5, tier=Math.floor(k/5),a=4+tier*5+(k*3)%7,b=2+tier*3+(k*2)%5;
+ let correct,question,options=[];
+ if(mode===0){correct=a+b;question=`Πρόσθεση: Πόσο κάνει ${a} + ${b};`}
+ if(mode===1){correct=a;question=`Αφαίρεση: Πόσο κάνει ${a+b} − ${b};`}
+ if(mode===2){correct=a>b?'Μεγαλύτερος':a<b?'Μικρότερος':'Ίσοι';question=`Σύγκρινε τους αριθμούς: ο ${a} είναι ... από τον ${b};`;options=['Μεγαλύτερος','Μικρότερος','Ίσοι']}
+ if(mode===3){let stepSize=2+tier,first=1+(k%4);correct=first+stepSize*4;question=`Βρες τον επόμενο αριθμό: ${first}, ${first+stepSize}, ${first+stepSize*2}, ${first+stepSize*3}, ...`}
+ if(mode===4){correct=a-b+3;question=`Έχεις ${a} μολύβια, δίνεις ${b} και παίρνεις άλλα 3. Πόσα έχεις τώρα;`}
+ setGoal(1);instruction(question);
+ let header=add('div','🧮 Σκέψου και διάλεξε τη σωστή απάντηση!',10,11,'font-size:clamp(17px,3vw,25px);font-weight:900;color:#153b60;background:#fff9;padding:12px;border-radius:15px;max-width:80%');
+ if(!options.length){let vals=[correct,correct+2+tier,Math.max(0,correct-2-tier),correct+5+tier];options=[...new Set(vals)].slice(0,4).map(String)}
+ let answer=String(correct),choices=options.map(String);choices.sort((x,y)=>((x.charCodeAt(0)*17+k*13)%31)-((y.charCodeAt(0)*17+k*13)%31));
+ const area=add('div','',8,38,'width:84%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;');
+ choices.forEach(choice=>{let btn=document.createElement('button');btn.textContent=choice;btn.style.cssText='min-height:72px;font-size:clamp(19px,4vw,30px);background:#fff;color:#173654;border:3px solid #5089b4;';btn.onclick=()=>{if(!alive)return;if(choice===answer){btn.style.background='#aaf1c3';finish()}else{mistake();note('Δοκίμασε ξανά. Σκέψου βήμα βήμα!')}};area.append(btn)});
+}
+else if(g===14){
+ // 15 αποστολές παρατήρησης και λογικής: 5 είδη × 3 βαθμίδες.
+ const mode=k%5,tier=Math.floor(k/5);setGoal(1);
+ const box=add('div','',7,27,'width:86%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;');
+ let question='',answers=[],right='';
+ if(mode===0){const sets=[['🍎','🍐','🍌','🚗'],['🐱','🐶','🐰','🌻'],['🚲','🚗','🚌','🍓']];answers=sets[tier];right=answers[3];question='Ποιο αντικείμενο ΔΕΝ ανήκει στην ομάδα;'}
+ if(mode===1){const seq=[['🔴','🔵','🔴','🔵','🔴','?'],['⭐','🌙','☀️','⭐','🌙','?'],['🍎','🍎','🍐','🍎','🍎','?']][tier];right=['🔵','☀️','🍐'][tier];answers=[right,'⭐','🍎','🔴'].filter((x,i,a)=>a.indexOf(x)===i);question='Παρατήρησε το μοτίβο: '+seq.join(' ')+' Τι λείπει;'}
+ if(mode===2){const sets=[['🐘','🐭','🐜','🐱'],['🏠','🏢','🏰','⛺'],['🐋','🐟','🐬','🦐']];answers=sets[tier];right=[ '🐘','🏰','🐋'][tier];question=['Ποιο ζώο είναι συνήθως το μεγαλύτερο;','Ποιο είναι κάστρο;','Ποιο είναι συνήθως το μεγαλύτερο;'][tier]}
+ if(mode===3){const sets=[['🔺','🔵','🟩','🔴'],['🟦','🟥','🔺','🟨'],['🔴','🟢','🟣','🔶']];answers=sets[tier];right=['🔺','🔺','🔶'][tier];question='Βρες το σχήμα που ΔΕΝ είναι κύκλος ή τετράγωνο όπως τα άλλα.';if(tier===0)question='Ποιο από τα σχήματα είναι τρίγωνο;';if(tier===1)question='Ποιο από τα σχήματα είναι τρίγωνο;';if(tier===2)question='Ποιο από τα σχήματα είναι ρόμβος;'}
+ if(mode===4){const cases=[{q:'Ποιο χρησιμοποιούμε για να κόψουμε χαρτί;',a:['✂️','🖌️','📏','📎'],r:'✂️'},{q:'Ποιο χρησιμοποιούμε για να μετρήσουμε το μήκος;',a:['🔑','📏','🧽','🪥'],r:'📏'},{q:'Ποιο χρησιμοποιούμε για να δούμε πολύ μικρά πράγματα;',a:['🔭','🔬','📷','🧭'],r:'🔬'}][tier];question=cases.q;answers=cases.a;right=cases.r}
+ instruction(question);
+ answers.forEach((v,i)=>{let btn=document.createElement('button');btn.textContent=v;btn.style.cssText='font-size:clamp(29px,6vw,54px);min-height:95px;background:#fff;border:3px solid #b28a41;';btn.onclick=()=>{if(!alive)return;if(v===right){btn.style.background='#b7f1b5';finish()}else{mistake();note('Παρατήρησε ξανά τα στοιχεία!')}};box.append(btn)});
+}
+}
+$('enter').onclick=()=>{let n=$('name').value.trim().slice(0,30);if(!n||['__proto__','constructor','prototype'].includes(n)){alert('Γράψε έγκυρο όνομα μαθητή.');return}login(n)};
+$('teacher').onclick=()=>{let pin=localStorage.getItem(PIN);if(!pin){let p=prompt('Όρισε PIN εκπαιδευτικού (4–8 ψηφία):');if(!/^\d{4,8}$/.test(p||'')){alert('Το PIN πρέπει να έχει 4–8 ψηφία.');return}localStorage.setItem(PIN,p);pin=p}let a=prompt('PIN εκπαιδευτικού:');if(a===pin)login('Εκπαιδευτικός',true);else if(a!==null)alert('Λανθασμένο PIN.')};
+$('switch').onclick=()=>{reset();$('app').classList.add('hidden');$('login').classList.remove('hidden');renderProfiles()};$('backGames').onclick=renderGames;$('backLevels').onclick=()=>renderLevels(game);$('winLevels').onclick=()=>renderLevels(game);$('next').onclick=()=>{if(current<TOTAL)play(current+1);else renderGames()};
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify({version:3,profiles:db},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='mikroi-exerevnites-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+$('import').onclick=()=>$('file').click();$('file').onchange=async e=>{let f=e.target.files?.[0];if(!f)return;try{let v=JSON.parse(await f.text());v=v.profiles||v;if(!v||typeof v!=='object'||Array.isArray(v))throw Error();for(let [n,p] of Object.entries(v)){if(!n||n.length>30||['__proto__','constructor','prototype'].includes(n)||!p||typeof p!=='object'||!p.stars||typeof p.stars!=='object'||Array.isArray(p.stars))continue;let valid={};for(let [id,val] of Object.entries(p.stars)){if(/^[0-9]+$/.test(id)&&Number(id)>=1&&Number(id)<=TOTAL&&Number.isInteger(val)&&val>=1&&val<=3)valid[id]=Math.max(db[n]?.stars?.[id]||0,val)}db[n]={stars:{...db[n]?.stars,...valid}}}save();renderGames();alert('Το αντίγραφο εισήχθη.')}catch{alert('Μη έγκυρο αντίγραφο ασφαλείας.')}e.target.value=''};
+renderProfiles();})();</script></body></html>
